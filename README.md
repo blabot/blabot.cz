@@ -1,2 +1,2 @@
-# blabot
-To be done...
+# Blabot.cz Website
+
