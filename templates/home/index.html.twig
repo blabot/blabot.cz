@@ -6,5 +6,8 @@
     <h1>Blábot – České Lorem ipsum</h1>
     <p>Bohužel jsme přišli o&nbsp;doménu blabot.net. I&nbsp;nám se po Blábotovi stýská, a&nbsp;proto jsme se rozhodli, že jej znovu rozběhneme zde… na blabot.cz.</p>
     <p><a href="https://www.linkedin.com/in/tomaskuba/">Tomáš Kuba</a> a <a href="https://www.linkedin.com/in/ondrejmachart/">Ondřej Machart</a></p>
+    <p>{% for sentence in blabols %}
+        {{ sentence }}
+        {% endfor %}</p>
 </div>
 {% endblock %}
