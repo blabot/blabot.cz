@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54793f50fa13f6fef87eb851e1651205",
+    "content-hash": "1a9750f8133094fbde250cf452c3cb3d",
     "packages": [
         {
             "name": "blabot/blabot-core-php",
-            "version": "v0.2.1",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blabot/blabot-core-php.git",
-                "reference": "27fba236956794cf56afe3f4d274702f5991828c"
+                "reference": "3db02e6a6f61273950dfce3982ec0a5e0fe002f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blabot/blabot-core-php/zipball/27fba236956794cf56afe3f4d274702f5991828c",
-                "reference": "27fba236956794cf56afe3f4d274702f5991828c",
+                "url": "https://api.github.com/repos/blabot/blabot-core-php/zipball/3db02e6a6f61273950dfce3982ec0a5e0fe002f1",
+                "reference": "3db02e6a6f61273950dfce3982ec0a5e0fe002f1",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 }
             ],
             "description": "Exceptionally language faithful generator of dummy text",
-            "time": "2019-06-08T21:10:04+00:00"
+            "time": "2019-06-08T22:31:47+00:00"
         },
         {
             "name": "blabot/blabot-dictionaries",

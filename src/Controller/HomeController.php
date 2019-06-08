@@ -12,14 +12,22 @@ use Blabot\Context as BlabotContext;
 class HomeController extends AbstractController
 {
     /**
+     * HomeController constructor.
+     */
+    public function __construct()
+    {
+        BlabotContext::$dictionaryGateway =  new DictionaryGateway();
+    }
+
+    /**
      * @Route("/", name="home")
      */
     public function index()
     {
-        mb_internal_encoding("UTF-8");
-        BlabotContext::$dictionaryGateway =  new DictionaryGateway();
         $request = new GenerateBlabolsRequest();
-        $request->dictionaryName = 'cs-capek.json';
+        $request->dictionaryName = 'cs.json';
+        $request->sentencesCount = 10;
+
         $useCase = new GenerateBlabolsUseCase();
         $generatorOutput = $useCase->execute($request);
 
