@@ -5,6 +5,9 @@
     "blabot/blabot-dictionaries": {
         "version": "v0.2.2"
     },
+    "dg/ftp-deployment": {
+        "version": "v3.2.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {

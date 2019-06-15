@@ -3,6 +3,12 @@
 <!DOCTYPE html>
 <html lang="cs">
     <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141880159-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date()); gtag('config', 'UA-141880159-1');
+        </script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,24 +17,194 @@
         <style>
             body {
                 font-family: Georgia, 'Times New Roman', Times, serif;
-                text-align: center;
+                line-height: 1.5;
+                padding: 0;
+                margin: 0;
             }
             img {
                 max-width: 100%;
             }
             h1 {
                 font-weight: 400;
+                font-size: 1.5rem;
+                margin: 0 0 2rem 0;
             }
             a {
-                color: #dc4f52;
+                color: #de4e4e;
                 text-decoration: none;
             }
             a:hover {
                 text-decoration: underline;
             }
-            .content {
-                max-width: 34em;
+            ::selection {
+                background: #de4e4e;
+                color: #ffffff;
+            }
+            ::-moz-selection {
+                background: #de4e4e;
+                color: #ffffff;
+            }
+            .container {
+                padding-top: 3rem;
+                display: flex;
+                flex-direction: column;
+            }
+            .container > * {
+                flex: 1 100%;
+            }
+            .logo {
+                display: block;
+                max-width: 10em;
                 margin: 0 auto;
+            }
+            .header {
+                margin-top: 1em;
+            }
+            .footer {
+                margin-bottom: 1em;
+            }
+            .header,
+            .main,
+            .footer {
+                padding-left: 1em;
+                padding-right: 1em;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .about,
+            .navigation,
+            .footer {
+                color: #999;
+                font-size: .875em;
+            }
+            .navigation {
+                display: none;
+                list-style: none;
+                padding: 0;
+            }
+            .navigation li a {
+                color: #999;
+                padding: 1ex 0 1ex 3rem;
+                display: inline-block;
+                border-left: 4px solid transparent;
+            }
+            .navigation li.active a {
+                border-left-color: #de4e4e;
+                color: #de4e4e;
+            }
+            .navigation li a:hover {
+                color: #de4e4e;
+            }
+            .header,
+            .footer {
+                text-align: center;
+            }
+            .copyinfo-wrap {
+                position: fixed;
+                top: 0;
+                left: 50%;
+                height: 1px;
+            }
+            .copyinfo {
+                position: relative;
+                left: -50%;
+                width: 220px;
+                box-shadow: 0 0 12px 0 rgba(0,0,0,0.6);
+                padding: 1em 1.5em;
+                transform: translateY(-100px);
+                background: #ffffff;
+                border-radius: 10px;
+                font-size: .875em;
+            }
+            .copyinfo.show {
+                animation: slideDown 3s 0s 1 ease forwards;
+            }
+            @keyframes slideDown {
+                0%, 100% { -webkit-transform: translateY(-100px); }
+                10%, 90% { -webkit-transform: translateY(20px); }
+            }
+            .mini-logo {
+                height: 2.5em;
+                float: left;
+                margin-right: 1ex;
+            }
+
+            @media (max-width: 759px) {
+                .blabols > :not(:first-child) {
+                    display: none;
+                }
+                h1.desktop {
+                    display: none;
+                }
+                .header,
+                .main,
+                .footer {
+                    max-width: 33em;
+                }
+
+            }
+
+            @media (min-width: 760px) {
+                h1.desktop {
+                    display: block;
+                }
+                h1.mobile {
+                    display: none;
+                }
+                .navigation {
+                    display: block;
+                }
+                .header,
+                .main,
+                .footer {
+                    padding-left: 0;
+                    padding-right: 0;
+                    text-align: left;
+                }
+                .container {
+                    display: flex;
+                    flex-flow: row wrap;
+                }
+                .header {
+                    flex: 1 1 0;
+                    margin: 0;
+                }
+                .about,
+                .navigation {
+                    max-width: 17rem;
+                    margin: 0;
+                }
+                .logo {
+                    margin: 0 1rem 1rem 3rem;
+                }
+                .about {
+                    margin: 0 1rem 3rem 3rem;
+                }
+
+                .main {
+                    flex: 2 2 0;
+                    margin: 0 3rem 0 0;
+                }
+                .blabols {
+                    max-width: 33rem;
+                }
+                .footer {
+                    flex: 0 100%;
+                    display: flex;
+                    flex-direction: row;
+                }
+                .footer .idea,
+                .footer .authors {
+                    flex: 1 auto;
+                }
+                .footer .idea {
+                    text-align: left;
+                    padding-left: 3rem;
+                }
+                .footer .authors {
+                    text-align: right;
+                    padding-right: 3rem;
+                }
             }
         </style>
         {% block stylesheets %}{% endblock %}
@@ -36,5 +212,48 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <script type="text/javascript">
+            function getSelectedText() {
+                if (window.getSelection) {
+                    return window.getSelection().toString();
+                } else if (document.selection) {
+                    return document.selection.createRange().text;
+                }
+                return '';
+            }
+
+            function copyTextToClipboard(text) {
+                if (!navigator.clipboard)
+                    return;
+                navigator.clipboard.writeText(text).then(function() {
+                    clearSelection();
+                    showCopyinfo()
+                }, function(err) {
+                    console.error('Could not copy text: ', err);
+                });
+            }
+
+            function clearSelection(){
+                if (window.getSelection)
+                    window.getSelection().removeAllRanges();
+                else if (document.selection)
+                    document.selection.empty();
+            }
+
+            function showCopyinfo() {
+                var m = document.getElementById('copyinfo');
+                m.classList.add('show');
+                setTimeout(function () {
+                    m.classList.remove('show')
+                }, 3000)
+            }
+
+            document.getElementById('blabols')
+            .addEventListener("mouseup", function() {
+                var text = getSelectedText()
+                if (text)
+                    copyTextToClipboard(text);
+            });
+        </script>
     </body>
 </html>

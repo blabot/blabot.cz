@@ -9,6 +9,11 @@ use Blabot\Generator\GenerateBlabolsRequest;
 use Blabot\Generator\GenerateBlabolsUseCase;
 use Blabot\Context as BlabotContext;
 
+/**
+ * Class HomeController
+ *
+ * @package App\Controller
+ */
 class HomeController extends AbstractController
 {
     /**
@@ -20,13 +25,16 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/", name="home")
+     * @Route("/{_locale}/{dictionary}", name="home")
      */
-    public function index()
+    public function index($_locale = 'cs', $dictionary = null)
     {
         $request = new GenerateBlabolsRequest();
-        $request->dictionaryName = 'cs.json';
-        $request->sentencesCount = 10;
+        if (empty($dictionary))
+            $request->dictionaryName = $_locale.'.json';
+        else
+            $request->dictionaryName = $_locale.'-'.$dictionary.'.json';
+        $request->sentencesCount = 33;
 
         $useCase = new GenerateBlabolsUseCase();
         $generatorOutput = $useCase->execute($request);
@@ -34,6 +42,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'blabols' => $generatorOutput->blabols,
+            'locale' => $_locale
         ]);
     }
 }

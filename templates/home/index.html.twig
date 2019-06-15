@@ -1,13 +1,64 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="content">
-    <img src="{{ asset('img/blabot-logo.jpg') }}" alt="Robot Blábot v vygenerovaným texem v paži">
-    <h1>Blábot – České Lorem ipsum</h1>
-    <p>Bohužel jsme přišli o&nbsp;doménu blabot.net. I&nbsp;nám se po Blábotovi stýská, a&nbsp;proto jsme se rozhodli, že jej znovu rozběhneme zde… na blabot.cz.</p>
-    <p><a href="https://www.linkedin.com/in/tomaskuba/">Tomáš Kuba</a> a <a href="https://www.linkedin.com/in/ondrejmachart/">Ondřej Machart</a></p>
-    <p>{% for sentence in blabols %}
-        {{ sentence }}
-        {% endfor %}</p>
+<div class="container">
+    <div class="header">
+        <a href="/"class="logo"><img src="{{ asset('img/blabot-logo.jpg') }}" alt="Robot Blábot v vygenerovaným texem v paži"></a>
+        <h1 class="mobile">České lorem ipsum</h1>
+        <p class="about">Blábot je generátor hezkých výplňových textů. Je vhodnější alternativou pro typografii a design za lorem ipsum.</p>
+        <ul class="navigation" role="menu">
+            <li {% if app.request.pathinfo == path('home', {'_locale': 'cs'}) %}class="active"{% endif %}>
+                <a href="{{ path('home', {'_locale': 'cs'}) }}" >Moderní čeština</a>
+            </li>
+            <li {% if app.request.pathinfo == path('home', {'_locale': 'cs', 'dictionary': 'capek'}) %}class="active"{% endif %}>
+                <a href="{{ path('home', {'_locale': 'cs', 'dictionary': 'capek'}) }}">Čapkovská čeština</a>
+            </li>
+            <li {% if app.request.pathinfo == path('home', {'_locale': 'cs', 'dictionary': 'legal'}) %}class="active"{% endif %}>
+                <a href="{{ path('home', {'_locale': 'cs', 'dictionary': 'legal'}) }}">Právní čeština</a>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <h1 class="desktop">České lorem ipsum</h1>
+        <div class="blabols" id="blabols">
+            <p>{% for sentence in blabols[0:11] %}{{ sentence|nbsp }} {% endfor %}</p>
+            <p>{% for sentence in blabols[11:11]%}{{ sentence|nbsp }} {% endfor %}</p>
+            <p>{% for sentence in blabols[22:11]%}{{ sentence|nbsp }} {% endfor %}</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p class="idea">Pokud máte nápad na vylepšení,
+            <script type="text/javascript">
+                //<![CDATA[
+                <!--
+                var x="function f(x,y){var i,o=\"\",l=x.length;for(i=0;i<l;i++){y%=127;o+=St" +
+                    "ring.fromCharCode(x.charCodeAt(i)^(y++));}return o;}f(\":(0<\\024\\010\\r\\" +
+                    "rD\\003N\\037A\\022\\034\\n\\036M\\007C\\037LPQX\\032\\032J\\000W\\026\\036" +
+                    "\\022\\032\\nh-n>ki=p``fn$u lxp`P{qsVl1v4-.7>\\035\\030\\020\\n_QT^SQ\\001\\"+
+                    "026T\\026B\\004\\r]\\tNWTBTP\\021_\\022G@CY/3j*y)kvs tv|v'b}x)<\\177h.y;1;)" +
+                    "\\035)v6IZ\\037\\021\\001\\021\\023\\025\\006I\\005E\\037\\030\\014\\034\\0" +
+                    "04\\003ZCX\\032\\032^C\\004\\034S^TO00._&\\177v389VW;?>SL&!#HI$'(EFA)/.C|\\" +
+                    "024\\022\\023xys\\023\\031\\031vw\\177lo\\177ca\\004\\001\\004ijv\\r\\013\\" +
+                    "ng``av\\004vss\\030\\031\\013\\024}zz\\027\\020\\006\\005\\036\\023\\023\\0" +
+                    "01j#8+\\\"|b\\0366)f>#\\020\\021\\036\\016*\\014\\013\\034\\003\\016X\\003\\"+
+                    "036\\004\\003\\r\\037R./()5DKI&'MNN\\\\]v_X747TUS:?=RS[EO!'%JK/**G@*,/|}\\0" +
+                    "27\\023\\024yz\\026\\033\\031vw\\031\\036\\036sl\\000\\001\\003hiu\\007\\01" +
+                    "3\\tfg\\t\\r\\016c\\034vss\\030\\031rwx\\025\\026~\\177}\\022\\023dab\\017\\"+
+                    "010!\\n\\013iij\\007\\000\\001|w\\006\\034Y\\014D\\013\\024\\022\\034\\014\\"+
+                    "030\\026WDGD[\\010Z-]\\034^\\0039\\034\\036\\024?\\017\\037hb,{,`bhK{kcO`a}" +
+                    "v?u}}gbD%2u +//\\\"\\005XY\\n\\017\\016O\\034D\\025C\\020\\034\\020G\\007B^" +
+                    "T\\010\\\\AQY]U\\024C\\001Q\\022cb\\035`~+i/g:(<0e4b7x7r=;<\\\"46,<yu\",92)" ;
+                while(x=eval(x));
+                //-->
+                //]]>
+            </script></p>
+        <p class="authors">2011-{{ "now"|date("Y") }} © <a href="https://www.linkedin.com/in/tomaskuba/">Tomáš Kuba</a> & <a href="https://www.linkedin.com/in/ondrejmachart/">Ondra Machart</a></p>
+    </div>
+    <div class="copyinfo-wrap">
+        <div id="copyinfo" class="copyinfo">
+            <img class="mini-logo" src="{{ asset('img/blabot-logo.jpg') }}" alt="Blábot">
+            <div class="message">Vybrané Bláboly jsem ti zkopíroval do schránky :]</div>
+        </div>
+    </div>
 </div>
 {% endblock %}

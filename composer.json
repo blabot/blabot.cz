@@ -61,6 +61,7 @@
         }
     },
     "require-dev": {
+        "dg/ftp-deployment": "^3.2",
         "symfony/maker-bundle": "^1.11",
         "symfony/var-dumper": "4.3.*",
         "symfony/web-server-bundle": "4.3.*"
