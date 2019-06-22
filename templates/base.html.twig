@@ -13,12 +13,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <link href="https://fonts.googleapis.com/css?family=Donegal+One&display=swap&subset=latin-ext" rel="stylesheet">
         {% block seo %}{% endblock %}
-        <title>{% block title %}Blábot – České Lorem ipsum{% endblock %}</title>
+        <title>{% block title %}Blábot – České lorem ipsum{% endblock %}</title>
         <style>
+            html {
+                font-size: 16px;
+            }
             body {
-                font-family: Georgia, 'Times New Roman', Times, serif;
-                line-height: 1.5;
+                font-family: 'Donegal One', Georgia, serif;
+                line-height: 1.75;
                 padding: 0;
                 margin: 0;
             }
@@ -27,8 +31,13 @@
             }
             h1 {
                 font-weight: 400;
-                font-size: 1.5rem;
                 margin: 0 0 2rem 0;
+            }
+            h1.desktop {
+                font-size: 1.5rem;
+            }
+            h1.mobile {
+                font-size: 1.375rem;
             }
             a {
                 color: #de4e4e;
@@ -36,6 +45,9 @@
             }
             a:hover {
                 text-decoration: underline;
+            }
+            p {
+                margin: 0 0 1.75em 0;
             }
             ::selection {
                 background: #de4e4e;
@@ -46,7 +58,7 @@
                 color: #ffffff;
             }
             .container {
-                padding-top: 3rem;
+                padding-top: 1rem;
                 display: flex;
                 flex-direction: column;
             }
@@ -96,6 +108,35 @@
             .navigation li a:hover {
                 color: #de4e4e;
             }
+            .button {
+                box-shadow: 0 1px 12px 0 rgba(0,0,0,0.3);
+                background: #fff;
+                border-radius: 30px;
+                font-size: 1rem;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                padding: 1.5ex;
+                margin: 0;
+                border: none;
+                line-height: 1.5;
+                display: inline-block;
+                vertical-align: middle;
+                cursor: pointer;
+            }
+            .icon-refresh {
+                margin: auto;
+                display: block;
+            }
+            button.button {
+                padding: 1.5ex 1.5em;
+
+            }
+            button.button:focus {
+                outline:0;
+            }
+            .button.red {
+                color: #fff;
+                background: #de4e4e;
+            }
             .header,
             .footer {
                 text-align: center;
@@ -109,7 +150,7 @@
             .copyinfo {
                 position: relative;
                 left: -50%;
-                width: 220px;
+                width: 233px;
                 box-shadow: 0 0 12px 0 rgba(0,0,0,0.6);
                 padding: 1em 1.5em;
                 transform: translateY(-100px);
@@ -118,19 +159,27 @@
                 font-size: .875em;
             }
             .copyinfo.show {
-                animation: slideDown 3s 0s 1 ease forwards;
+                animation: slideDown 3.5s 0s 1 ease forwards;
             }
             @keyframes slideDown {
                 0%, 100% { -webkit-transform: translateY(-100px); }
                 10%, 90% { -webkit-transform: translateY(20px); }
             }
             .mini-logo {
-                height: 2.5em;
+                height: 3.3em;
                 float: left;
                 margin-right: 1ex;
             }
 
             @media (max-width: 759px) {
+                .actions {
+                    margin-bottom: 1rem;
+                    display: block;
+                    text-align: center;
+                }
+                .blabols {
+                    font-size: 0.875rem;
+                }
                 .blabols > :not(:first-child) {
                     display: none;
                 }
@@ -146,11 +195,17 @@
             }
 
             @media (min-width: 760px) {
+                .container {
+                    padding-top: 3rem;
+                }
                 h1.desktop {
-                    display: block;
+                    display: inline-block;
                 }
                 h1.mobile {
                     display: none;
+                }
+                .actions {
+                    margin-left: 7rem;
                 }
                 .navigation {
                     display: block;
@@ -172,7 +227,7 @@
                 }
                 .about,
                 .navigation {
-                    max-width: 17rem;
+                    max-width: 18rem;
                     margin: 0;
                 }
                 .logo {
@@ -187,7 +242,7 @@
                     margin: 0 3rem 0 0;
                 }
                 .blabols {
-                    max-width: 33rem;
+                    max-width: 37rem;
                 }
                 .footer {
                     flex: 0 100%;
@@ -223,11 +278,21 @@
                 return '';
             }
 
-            function copyTextToClipboard(text) {
+            function copySlectionToClipboard(text) {
                 if (!navigator.clipboard)
                     return;
                 navigator.clipboard.writeText(text).then(function() {
                     clearSelection();
+                    showCopyinfo()
+                }, function(err) {
+                    console.error('Could not copy text: ', err);
+                });
+            }
+
+            function copyAllToClipboard(text) {
+                if (!navigator.clipboard)
+                    return;
+                navigator.clipboard.writeText(text).then(function() {
                     showCopyinfo()
                 }, function(err) {
                     console.error('Could not copy text: ', err);
@@ -246,14 +311,21 @@
                 m.classList.add('show');
                 setTimeout(function () {
                     m.classList.remove('show')
-                }, 3000)
+                }, 3500)
             }
 
             document.getElementById('blabols')
             .addEventListener("mouseup", function() {
                 var text = getSelectedText()
                 if (text)
-                    copyTextToClipboard(text);
+                    copySlectionToClipboard(text);
+            });
+
+            document.getElementById('copy-all')
+            .addEventListener("click", function() {
+                var text = document.getElementById('blabols').innerText;
+                if (text)
+                    copyAllToClipboard(text);
             });
         </script>
     </body>
