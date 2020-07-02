@@ -1,6 +1,10 @@
+page_title: 'Blábot – České lorem ipsum'
 blabot: Blábot
-blabot.logo.alt: 'Robot Blábot v vygenerovaným textom v ruke'
-button.refresh.title: 'Nový text'
-button.copy: Zkopírovať
-button.copy.title: 'Skopírovať všetko do schránky'
-notification.copied: 'Bláboly som ti skopíroval do schránky :]'
+blabot_logo_alt: 'Robot Blábot v vygenerovaným textom v ruke'
+button_refresh_title: 'Nový text'
+button_copy: Zkopírovať
+button_copy_title: 'Skopírovať všetko do schránky'
+notification_copied: 'Bláboly som ti skopíroval do schránky :]'
+homepage_h1: 'Pekné slovenské lorem ipsum'
+homepage_title: 'Blábot – Slovenské lorem ipsum'
+homepage_about: 'Blábot je generátor pekných výplňových textov. Je vhodnejšia alternatíva pre typografiu a dizajn ako Lorem ipsum.'

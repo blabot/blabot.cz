@@ -1,29 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% set about = "Blábot je generátor hezkých výplňových textů. Je vhodnější alternativou pro typografii a design za lorem ipsum." %}
-{% set title = "Blábot – České lorem ipsum" %}
-{% set h1 = "Hezké české lorem ipsum" %}
+{% set about = "homepage_about" %}
+{% set title = "homepage_title" %}
+{% set h1 = "homepage_h1" %}
 {% set currentFullUri = app.request.uriForPath(app.request.pathinfo) %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ title|trans }}{% endblock %}
 
-{% block seo %}<meta property="description" content="{{ about }}">
-        <meta property="og:title" content="{{ title }}">
+{% block seo %}<meta property="description" content="{{ about|trans }}">
+        <meta property="og:title" content="{{ title|trans }}">
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ currentFullUri }}">
         <meta property="og:image" content="{{ app.request.uriForPath(asset('img/blabot-logo.jpg')) }}">
         <meta property="og:image:type" content="image/jpeg">
         <meta property="og:image:width" content="307">
         <meta property="og:image:height" content="307">
-        <meta property="og:description" content="{{ about }}">
+        <meta property="og:description" content="{{ about|trans }}">
 {% endblock %}
 
 {% block body %}
         <div class="container">
             <div class="header">
-                <a href="/"class="logo"><img src="{{ asset('img/blabot-logo.jpg') }}" alt="{% trans %}blabot.logo.alt{% endtrans %}"></a>
-                <h1 class="mobile">{{ h1 }}</h1>
-                <p class="about">{{ about }}</p>
+                <a href="/"class="logo"><img src="{{ asset('img/blabot-logo.jpg') }}" alt="{% trans %}blabot_logo_alt{% endtrans %}"></a>
+                <h1 class="mobile">{{ h1|trans }}</h1>
+                <p class="about">{{ about|trans }}</p>
                 <ul class="navigation" role="menu">
                     <li {% if app.request.pathinfo == path('home', {'_locale': 'cs'}) %}class="active"{% endif %}>
                         <a href="{{ path('home', {'_locale': 'cs'}) }}" >Moderní čeština</a>
@@ -46,10 +46,10 @@
                 </ul>
             </div>
             <div class="main">
-                <h1 class="desktop">{{ h1 }}</h1>
+                <h1 class="desktop">{{ h1|trans }}</h1>
                 <span class="actions">
-                    <a href="{{ app.request.pathinfo }}" class="button"><img class="icon-refresh" src="{{ asset('img/refresh.svg') }}" alt="{% trans %}button.refresh.title{% endtrans %}" title="{% trans %}button.refresh.title{% endtrans %}"></a>
-                    <button id="copy-all" class="button red" title="{% trans %}button.copy.title{% endtrans %}">{% trans %}button.copy{% endtrans %}</button>
+                    <a href="{{ app.request.pathinfo }}" class="button"><img class="icon-refresh" src="{{ asset('img/refresh.svg') }}" alt="{% trans %}button_refresh_title{% endtrans %}" title="{% trans %}button_refresh_title{% endtrans %}"></a>
+                    <button id="copy-all" class="button red" title="{% trans %}button_copy_title{% endtrans %}">{% trans %}button_copy{% endtrans %}</button>
                 </span>
                 <div class="blabols" id="blabols">
                     <p>{% for sentence in blabols[0:11] %}{{ sentence|nbsp }} {% endfor %}</p>
@@ -88,7 +88,7 @@
             <div class="copyinfo-wrap">
                 <div id="copyinfo" class="copyinfo">
                     <img class="mini-logo" src="{{ asset('img/blabot-logo.jpg') }}" alt="{% trans %}blabot{% endtrans %}">
-                    <div class="message">{% trans %}notification.copied{% endtrans %}</div>
+                    <div class="message">{% trans %}notification_copied{% endtrans %}</div>
                 </div>
             </div>
         </div>
