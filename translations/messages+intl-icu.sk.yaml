@@ -1,5 +1,6 @@
-'Robot Blábot v vygenerovaným textem v paži': 'Robot Blábot v vygenerovaným textom v ruke'
-'Nový text': 'Nový text'
-'Zkopírovat vše do schránky': 'Zkopírovať všetko do schránky'
-Zkopírovat: Zkopírovať
-Blábot: Blábot
+blabot: Blábot
+blabot.logo.alt: 'Robot Blábot v vygenerovaným textom v ruke'
+button.refresh.title: 'Nový text'
+button.copy: Zkopírovať
+button.copy.title: 'Skopírovať všetko do schránky'
+notification.copied: 'Bláboly som ti skopíroval do schránky :]'
