@@ -13,7 +13,7 @@ class ApiController extends AbstractController
      */
     public function index()
     {
-        $json = "{'Hello': 'World!'}";
+        $json = "{'Hello': 'I am Blabot!'}";
         $response = new Response($json, Response::HTTP_OK);
         $response->headers->set('Content-Type', 'application/json');
         return $response;
